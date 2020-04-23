@@ -2,25 +2,25 @@ import random
 import requests
 import string
 
-from credentials import firstNames, lastNames, passwords
+from credentials import first_names, last_names, passwords
 
 URL = "PHISHING SITE HERE"
 
 def random_email():
-    first = random.choice(firstNames).lower()
-    last = random.choice(lastNames).lower()
+    first = random.choice(first_names).lower()
+    last = random.choice(last_names).lower()
 
-    randomBridgeNum = random.randint(1,3)
-    randomDomainNum = random.randint(1,3)
+    random_bridge_num = random.randint(1,3)
+    random_domain_num = random.randint(1,3)
 
-    bridge = "." if randomBridgeNum == 1 else "_" if randomBridgeNum == 2 else ""
-    domain = "@gmail.com" if randomDomainNum == 1 else "@yahoo.com" if randomDomainNum == 2 else "@hotmail.com"
-    randomNumber = ""
+    bridge = "." if random_bridge_num == 1 else "_" if random_bridge_num == 2 else ""
+    domain = "@gmail.com" if random_domain_num == 1 else "@yahoo.com" if random_domain_num == 2 else "@hotmail.com"
+    random_number = ""
 
     for _ in range(random.randint(0, 4)):
-        randomNumber += random.choice(string.digits)
+        random_number += random.choice(string.digits)
 
-    return first + bridge + last + randomNumber + domain
+    return first + bridge + last + random_number + domain
 
 for _ in range(1000): # send 1000 fake logins
     email = random_email()
