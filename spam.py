@@ -1,5 +1,6 @@
 import random
 import requests
+import string
 
 from credentials import firstNames, lastNames, passwords
 
@@ -12,18 +13,22 @@ def random_email():
     randomBridgeNum = random.randint(1,3)
     randomDomainNum = random.randint(1,3)
 
-    bridge = "." if randomBridgeNum == 1 else "_" if randomDomainNum == 2 else ""
+    bridge = "." if randomBridgeNum == 1 else "_" if randomBridgeNum == 2 else ""
     domain = "@gmail.com" if randomDomainNum == 1 else "@yahoo.com" if randomDomainNum == 2 else "@hotmail.com"
+    randomNumber = ""
 
-    return first + bridge + last + domain
+    for _ in range(random.randint(0, 4)):
+        randomNumber += random.choice(string.digits)
 
-for x in range(1000): # send 1000 fake logins
+    return first + bridge + last + randomNumber + domain
+
+for _ in range(1000): # send 1000 fake logins
     email = random_email()
     password = random.choice(passwords)
 
-    requests.post(URL, allow_redirects=False, data={
-        "email": email, # email key may differ from site to site
-        "password": password # password key may differ from site to site
-    })
+    # requests.post(URL, allow_redirects=False, data={
+    #     "email": email, # email key may differ from site to site
+    #     "password": password # password key may differ from site to site
+    # })
 
     print("Sending email {} and password {}".format(email, password))
