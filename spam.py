@@ -26,9 +26,9 @@ for _ in range(1000): # send 1000 fake logins
     email = random_email()
     password = random.choice(passwords)
 
-    # requests.post(URL, allow_redirects=False, data={
-    #     "email": email, # email key may differ from site to site
-    #     "password": password # password key may differ from site to site
-    # })
+    requests.post(URL, allow_redirects=False, data={
+        "email": email, # email key may differ from site to site
+        "password": password # password key may differ from site to site
+    })
 
     print("Sending email {} and password {}".format(email, password))
