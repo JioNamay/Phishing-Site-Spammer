@@ -26,13 +26,15 @@ def random_email():
 
     return first + bridge + last + random_number + domain
 
-for _ in range(1000): # send 1000 fake logins
+for count in range(1000): # send 1000 fake logins
     email = random_email()
     password = random.choice(passwords)
 
-    requests.post(URL, allow_redirects=False, data={
+    response = requests.post(URL, allow_redirects=False, data={
         "email": email, # email key may differ from site to site
         "password": password # password key may differ from site to site
     })
 
+    print("Count: {}".format(count + 1))
+    print("Status code: {}".format(response.status_code))
     print("Sending email {} and password {}".format(email, password))
